@@ -47,7 +47,7 @@ public class JuezControlador {
 
     @PutMapping(path = "{juezId}")
     public void actualizaJuez(
-        @PathVariable("juezId") Long juezId,
+        @PathVariable Long juezId,
         @RequestParam(required = false) String nombre,
         @RequestParam(required = false) Disciplina disciplina) {
             juezServicio.actualizaJuez(juezId, nombre, disciplina);

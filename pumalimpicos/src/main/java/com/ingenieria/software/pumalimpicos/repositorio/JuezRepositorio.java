@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JuezRepositorio extends JpaRepository<Juez, Long> {
 
-    @Query("SELECT j FROM juez j WHERE j.nombre = ?1")
+    @Query("SELECT j FROM Juez j WHERE j.nombre = ?1")
     Optional<Juez> findJuezByNombre(String nombre);
 }
