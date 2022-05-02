@@ -1,6 +1,7 @@
 package com.ingenieria.software.pumalimpicos.controlador;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
@@ -41,7 +42,7 @@ public class JuezControlador {
     // Single item
 
     @GetMapping(path = "{juezId}")
-    Juez juezById(@PathVariable Long juezId) {
+    Optional<Juez> juezById(@PathVariable Long juezId) {
         return juezServicio.getJuez(juezId);
     }
 

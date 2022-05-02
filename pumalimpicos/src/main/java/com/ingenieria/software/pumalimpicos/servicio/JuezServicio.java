@@ -2,6 +2,9 @@ package com.ingenieria.software.pumalimpicos.servicio;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.repositorio.*;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
@@ -21,8 +24,12 @@ public class JuezServicio {
         return juezRepositorio.findAll();
     }
 
+    public Optional<Juez> getJuez(Long juezId) {
+        return juezRepositorio.findById(juezId);
+    } 
+
     public void agregaJuez(Juez juez) {
-        Optional<Juez> juezOptional = juezRepositorio.findJuezByName(juez.getNombre());
+        Optional<Juez> juezOptional = juezRepositorio.findJuezByNombre(juez.getNombre());
         if (juezOptional.isPresent()) {
             throw new IllegalStateException("ya eixste un juez con esse nombre");
         }    
@@ -46,7 +53,7 @@ public class JuezServicio {
         ));
 
         if(nombre != null &&
-        !Object.equals(juez.getNombre(), nombre)) {
+        !(juez.getNombre() ==  nombre)) {
             juez.setNombre(nombre);
         }
     }
