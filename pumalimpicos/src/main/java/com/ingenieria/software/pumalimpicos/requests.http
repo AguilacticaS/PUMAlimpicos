@@ -1,4 +1,4 @@
-DELETE http://localhost:8080/jueces/1
+DELETE http://localhost:8080/jueces/3
 Content-Type: application/json
 
 ###
@@ -13,3 +13,7 @@ Content-Type: application/json
     "nombre": "Ramiro",
     "disciplina": "BASQUETBOL"
 }
+
+###
+GET http://localhost:8080/jueces/2
+Content-Type: application/json
