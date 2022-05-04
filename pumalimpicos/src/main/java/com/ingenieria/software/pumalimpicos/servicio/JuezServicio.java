@@ -28,7 +28,11 @@ public class JuezServicio {
         return juezRepositorio.findById(juezId)
         .orElseThrow(() -> new IllegalStateException("no existe juez con el Id suministrado."));
     }
-    
+
+    /**
+     * Método agregaJuez, para agregar un juez a la base de datos
+     * @param juez - El juez que se agregará al sistema.
+     **/
     public void agregaJuez(Juez juez) {
         Optional<Juez> juezOptional = juezRepositorio.findJuezByNombre(juez.getNombre());
         if (juezOptional.isPresent()) {

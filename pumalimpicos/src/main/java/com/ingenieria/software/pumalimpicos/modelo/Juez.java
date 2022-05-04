@@ -31,11 +31,15 @@ public class Juez {
     @Enumerated(value = EnumType.STRING)
     @Getter @Setter private Disciplina disciplina;
 
-
-
+    /**
+     * Constructor de Juez.
+     * @param nombre - Nombre del juez
+     * @param disciplina - disciplina de la que es juez
+     **/
     public Juez(String nombre, Disciplina disciplina) {
-    this.nombre = nombre;
-    this.disciplina = disciplina;
+        this.nombre = nombre;
+        this.disciplina = disciplina;
+        //Falta implementar contraseña
     }
 }
 
