@@ -24,7 +24,7 @@ import lombok.ToString;
 public class Disciplin {
     @Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    @Getter @Setter private Long id;
     @Column
     @Getter @Setter private String nombre;
     @Column
