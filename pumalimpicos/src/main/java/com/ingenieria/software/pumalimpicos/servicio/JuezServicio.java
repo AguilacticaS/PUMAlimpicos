@@ -24,6 +24,10 @@ public class JuezServicio {
         return juezRepositorio.findAll();
     }
 
+    public List<Juez> getJuecesByDisciplina(Disciplina disciplina) {
+        return juezRepositorio.findJuezByDisciplina(disciplina);
+    }
+
     public Juez getJuez(Long juezId) {
         return juezRepositorio.findById(juezId)
         .orElseThrow(() -> new IllegalStateException("no existe juez con el Id suministrado."));

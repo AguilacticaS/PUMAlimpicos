@@ -1,7 +1,9 @@
 package com.ingenieria.software.pumalimpicos.repositorio;
 
+import java.util.List;
 import java.util.Optional;
 
+import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +15,7 @@ public interface JuezRepositorio extends JpaRepository<Juez, Long> {
 
     @Query("SELECT j FROM Juez j WHERE j.nombre = ?1")
     Optional<Juez> findJuezByNombre(String nombre);
+
+    @Query("SELECT j FROM Juez j WHERE j.disciplina = ?1")
+    List<Juez> findJuezByDisciplina(Disciplina disciplina);
 }
