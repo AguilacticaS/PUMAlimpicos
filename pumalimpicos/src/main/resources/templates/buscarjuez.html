@@ -14,10 +14,11 @@
       <div class="col-8">
          <center><font size=20 face="Comic Sans MS" color="DarkOrchid">PUMAlímpicos</font></center>
           <center><h3>Buscar Juez</h3></center>
-              <form method="get" th:action="@{/resultado_busqueda_juez}">
+
+              <form method="get" th:action="@{/jueces/resultado_busqueda_juez}">
                   <div class="mb-3">
                       <label class = "form-label" for="juezNombre">Nombre de Juez</label>
-                      <input type="text" th:field = ${juez.nombre} id="juezNombre" name="juezNombre" class="form-control"
+                      <input type="text" id="juezNombre" name="juezNombre" class="form-control"
                       placeholder="Introduce el nombre del juez"/>
                   </div>
                   <div class="mb-3">

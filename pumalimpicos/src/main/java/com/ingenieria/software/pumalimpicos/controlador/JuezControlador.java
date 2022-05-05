@@ -4,6 +4,8 @@ package com.ingenieria.software.pumalimpicos.controlador;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
 import com.ingenieria.software.pumalimpicos.servicio.JuezServicio;
@@ -37,20 +39,24 @@ public class JuezControlador {
         return "menujuez";
     }
 
-    @RequestMapping("/buscarjuez")
-    public String verBuscarJuez(Model model) {
-        model.addAttribute("juez", new Juez());
+    @GetMapping("/buscarjuez")
+    public String verBuscarJuez() {
+        //model.addAttribute("juez", new Juez());
        // List<Disciplina> enums = Arrays.asList(Disciplina.values());
       // model.addAttribute("disciplinas", enums);
         return "buscarjuez";
     }
 
     @GetMapping("/resultado_busqueda_juez")
-    public String getJueces(){ //, @ModelAttribute("disciplina") Disciplina disciplina) {
+    public String getJueces(HttpServletRequest request, Model model){ //, @ModelAttribute("disciplina") Disciplina disciplina) {
         //model.addAttribute("disciplinas", Disciplina.values());
-
+        //Juez juez = juezServicio.getJuezById(Long.parseLong(request.getParameter("juezNombre")));
+        Juez juez = juezServicio.getJuezByNombre(request.getParameter("juezNombre"));
+        //model.addAttribute("nombre", juez);
+        System.out.println(juez.getNombre());
         //List<Juez> juecesByDisciplina =  juezServicio.getJuecesByDisciplina(disciplina);
-        //model.addAttribute("juecesByDisciplina", juecesByDisciplina);
+        //model.addAttribute("juez", request.getParameter("juezNombre"));
+        model.addAttribute("juez", juez);
         return "resultado_busqueda_juez";
     }
 
@@ -70,7 +76,7 @@ public class JuezControlador {
 
     @GetMapping(path = "{juezId}")
     Juez juezById(@PathVariable Long juezId) {
-        return juezServicio.getJuez(juezId);
+        return juezServicio.getJuezById(juezId);
     }
 
     @PutMapping(path = "{juezId}")

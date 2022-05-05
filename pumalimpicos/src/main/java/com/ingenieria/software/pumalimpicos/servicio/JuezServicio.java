@@ -28,9 +28,14 @@ public class JuezServicio {
         return juezRepositorio.findJuezByDisciplina(disciplina);
     }
 
-    public Juez getJuez(Long juezId) {
+    public Juez getJuezById(Long juezId) {
         return juezRepositorio.findById(juezId)
         .orElseThrow(() -> new IllegalStateException("no existe juez con el Id suministrado."));
+    }
+
+    public Juez getJuezByNombre(String nombre) {
+        return juezRepositorio.findJuezByNombre(nombre)
+        .orElseThrow(() -> new IllegalStateException("no existe juez con el nombre suministrado."));
     }
 
     /**
