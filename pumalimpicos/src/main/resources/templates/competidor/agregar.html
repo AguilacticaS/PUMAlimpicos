@@ -18,19 +18,19 @@
             <div class="col-8">
                 <h1>Agregar Competidor</h1>
                 <div id="tarjeta">
-                    <form method="post" th:action="@{/disciplinas/agregar}">
+                    <form method="post" th:action="@{/competidores/agregar}">
                         <div class="mb-3">
-                            <label for="titulo" class="form-label">Nombre del Competidor</label>
+                            <label for="nombre" class="form-label">Nombre del Competidor</label>
                             <input type="text" id="nombre" name="nombre" class="form-control"
                                    placeholder="Introduce el nombre" required/>
                         </div>
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Clasificacion" id="clasificacion" name="clasificacion"
+                            <textarea class="form-control" placeholder="Disciplina" id="disciplina" name="disciplina"
                                       style="height: 100px"></textarea>
-                            <label for="nota">Disciplina</label>
+                            <label for="nombre">Disciplina</label>
                         </div>
                         <button style="margin-top: 14px;" class="btn btn-primary" type="submit">Enviar</button>
-                        <a class="btn btn-primary" th:href="@{/menucompetidor/}" style="margin-top: 13px"> Volver al menu</a>
+                        <a class="btn btn-primary" th:href="@{/menuentrenador/}" style="margin-top: 13px"> Volver al menu</a>
 
                     </form>
                 </div>

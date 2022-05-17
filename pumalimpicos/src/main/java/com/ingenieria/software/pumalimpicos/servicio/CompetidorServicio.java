@@ -87,10 +87,10 @@ public class CompetidorServicio {
         Competidor competidor = competidorRepositorio.findById(competidorId)
                 .orElseThrow(() -> new IllegalStateException(advertencia));
 
-        Boolean nom = nombre.equals(competidor.getNombre());
+        boolean nom = nombre.equals(competidor.getNombre());
         if (nombre != null && !nom) competidor.setNombre(nombre);
 
-        Boolean disci = disciplina.equals(competidor.getDisciplina());
-        if (disciplina != null && !disci) competidor.setDisciplina();
+        boolean disci = disciplina.equals(competidor.getDisciplina());
+        if (disciplina != null && !disci) competidor.setDisciplina(disciplina);
     }
 }
