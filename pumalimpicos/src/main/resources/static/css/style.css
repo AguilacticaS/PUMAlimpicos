@@ -1,7 +1,17 @@
 .tarjeta {
-    border: 1px solid lightgray;
+    border: 2px solid lightgray;
+    background-color: antiquewhite;
     border-radius: 11px;
     padding: 22px;
     box-shadow: 2px 2px lightgray;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.label{
+    color: white;
+}
+
+
+h1{
+    color: antiquewhite;
 }

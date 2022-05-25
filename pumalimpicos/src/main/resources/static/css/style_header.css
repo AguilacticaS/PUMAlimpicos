@@ -4,3 +4,9 @@ body {
 	background-repeat: repeat-y;
 	background-size: 10rem;
   }
+
+header{
+	width: 1000px;
+	height: 700px;
+
+}  
