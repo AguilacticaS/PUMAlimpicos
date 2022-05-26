@@ -9,5 +9,4 @@ public class PumalimpicosApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PumalimpicosApplication.class, args);
 	}
-
 }
