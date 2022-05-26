@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <meta charset="UTF-8">
   <title>Disciplina</title>
@@ -12,10 +11,10 @@
 
 <body>
 
-  <header th:replace="fragments/header::header"></header>
-  <main>
+<header th:replace="fragments/header::header"></header>
+<main>
 
-    <h1>Menú Disciplina</h1>
+    <h1>Menú Entrenador</h1>
     <nav class="menu">
       <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
       <label class="menu-open-button" for="menu-open">
@@ -24,22 +23,20 @@
         <span class="lines line-3"></span>
       </label>
 
-      <a th:href="@{/disciplinas/agregar}" abbr title="Agregar Disciplina" class="menu-item blue"> <i
+      <a th:href="@{/competidores/agregar}" abbr title="Agregar Competidor" class="menu-item blue"> <i
           class="fa fa-plus"></i> </a>
-      <a th:href="@{/disciplinas/consultar}" abbr title="Consultar Disciplina" class="menu-item green"> <i
+      <a th:href="@{/competidores/consultar}" abbr title="Consultar Competidor" class="menu-item green"> <i
           class="fa fa-magnifying-glass"></i></a>
-      <a th:href="@{/disciplinas/eliminar}" abbr title="Eliminar Disciplina" class="menu-item red"> <i
+      <a th:href="@{/competidores/eliminar}" abbr title="Eliminar Competidor" class="menu-item red"> <i
           class="fa fa-minus"></i> </a>
       <a th:href="@{/menu/}" abbr title="Cerrar sesión" class="menu-item purple"> <i class="fa fa-arrow-right-from-bracket"></i>
       </a>
-      <a th:href="@{/disciplinas/actualizar}" abbr title="Actualizar Disciplina" class="menu-item orange"> <i
+      <a th:href="@{/competidores/actualizar}" abbr title="Actualizar Competidor" class="menu-item orange"> <i
           class="fa fa-pen"></i></a>
       <a href="#" abbr title="Perfil" class="menu-item lightblue"> <i class="fa fa-user"></i> </a>
     </nav>
-
-  </main>
-  <footer th:replace="fragments/footer::footer"></footer>
+</main>
+<footer th:replace="fragments/footer::footer"></footer>
 
 </body>
-
 </html>

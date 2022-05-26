@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eliminar Competidor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:replace="fragments/header::header"></header>
+<main>
+
+        <div class="col d-flex justify-content-center">
+            <div class="card w-75 p-3">
+                <div class="card-header">
+                    <h2>Eliminar Competidor</h2>
+                </div>
+
+                <div class="tarjeta">
+                    <div class="mb-3">
+                        <h4 th:text="${competidor.nombre}"></h4>
+                    </div>
+                    <div class="form-floating">
+                        <p th:text="${competidor.disciplina}">
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center">
+                        <form th:action="@{/competidores/eliminar}" method="post">
+                            <input type="hidden" id="id" name="id" class="form-control" th:value="${competidor.id}"/>
+                            <button class="btn btn-danger btn-lg" type="submit">Eliminar</button>
+                            <a class="btn btn-primary btn-lg" th:href="@{/competidores/eliminar/}">Cancelar</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+</main>
+<footer th:replace="fragments/footer::footer"></footer>
+</body>
+</html>
