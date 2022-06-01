@@ -8,10 +8,15 @@ import javax.transaction.Transactional;
 import com.ingenieria.software.pumalimpicos.repositorio.*;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JuezServicio {
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
     private final JuezRepositorio juezRepositorio;
 
     @Autowired
@@ -42,6 +47,7 @@ public class JuezServicio {
      * @param juez - El juez que se agregará al sistema.
      **/
     public void agregaJuez(Juez juez) {
+		juez.setPassword(passwordEncoder.encode(juez.getPassword()));
         juezRepositorio.save(juez);
         /*Optional<Juez> juezOptional = juezRepositorio.findJuezByNombreYApellidos(juez.getNombre(),
                                         juez.getApellidoPaterno(), juez.getApellidoMaterno());
