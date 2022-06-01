@@ -28,8 +28,8 @@
           </thead>
           <tbody>
             <td th:text="${juez.nombre}"></td>
-            <td th:text="${juez.apellidoPaterno}"></td>
-            <td th:text="${juez.apellidoMaterno}"></td>
+            <td th:text="${juez.apellidoP}"></td>
+            <td th:text="${juez.apellidoM}"></td>
             <td><a class="btn btn-dark" th:href="@{/menujuez/eliminar/__${juez.id}__}">Eliminar</a></td>
             <td><a class="btn btn-primary" th:href="@{/menujuez/actualizar/(juezId=${juez.id})}">Actualizar</a></td>
           </tbody>

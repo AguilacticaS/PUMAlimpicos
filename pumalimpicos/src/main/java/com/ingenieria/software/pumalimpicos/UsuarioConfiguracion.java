@@ -38,11 +38,22 @@ public class UsuarioConfiguracion {
                     "Entrenador",
                     passwordEncoder.encode("marco") 
             );
+
+            Usuario admin = new Usuario(
+                    "admin",
+                    "admin",
+                    "admin",
+                    "admin@gmail.com",
+                    "admin",
+                    "Administrador",
+                    passwordEncoder.encode("admin") 
+            );
             
             repository.saveAll(
                 new ArrayList<Usuario>() {{
                     add(user1);
                     add(user2);
+                    add(admin);
                 }}
             );
         };

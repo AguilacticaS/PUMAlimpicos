@@ -31,19 +31,19 @@
                         </div>
                         <div class="form-row">
                             <label for="apellidoPaterno" class="form-label">Apellido paterno del juez</label>
-                            <input type="text" placeholder="Apellido paterno" th:field="*{apellidoPaterno}"
+                            <input type="text" placeholder="Apellido paterno" th:field="*{apellidoP}"
                                 class="input-text" required />
                             <i class="fa-solid fa-quote-right"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoPaterno')}"
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoP')}"
                                 th:errors="*{apellidoPaterno}"></div>
                         </div>
 
                         <div class="form-row">
                             <label for="apellidoMaterno" class="form-label">Apellido materno del juez</label>
-                            <input type="text" placeholder="Apellido materno" th:field="*{apellidoMaterno}"
+                            <input type="text" placeholder="Apellido materno" th:field="*{apellidoM}"
                                 class="input-text" />
                             <i class="fa-solid fa-quote-right"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoMaterno')}"
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoM')}"
                                 th:errors="*{apellidoMaterno}"></div>
                         </div>
                         <div class="form-row">
