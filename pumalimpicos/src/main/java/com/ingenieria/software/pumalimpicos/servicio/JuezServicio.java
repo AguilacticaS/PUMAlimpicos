@@ -71,17 +71,13 @@ public class JuezServicio {
         ));
 
         if(((nombre != null ) && (apellidoPaterno != null) && (apellidoMaterno != null)) && (email != null)
-            && (!nombre.equals(juez.getNombre()) || !apellidoPaterno.equals(juez.getApellidoPaterno())
-            || !apellidoMaterno.equals(juez.getApellidoMaterno())|| !email.equals(juez.getEmail()))) {
+            && (!nombre.equals(juez.getNombre()) || !apellidoPaterno.equals(juez.getApellidoP())
+            || !apellidoMaterno.equals(juez.getApellidoM())|| !email.equals(juez.getEmail()))) {
             juez.setNombre(nombre);
-            juez.setApellidoPaterno(apellidoPaterno);
-            juez.setApellidoMaterno(apellidoMaterno);
+            juez.setApellidoP(apellidoPaterno);
+            juez.setApellidoM(apellidoMaterno);
             juez.setEmail(email);
         }
 
-		/*if (disciplina != null &&
-            !disciplina.equals(juez.getDisciplina())) {
-			juez.setDisciplina(disciplina);
-		}*/
     }
 }

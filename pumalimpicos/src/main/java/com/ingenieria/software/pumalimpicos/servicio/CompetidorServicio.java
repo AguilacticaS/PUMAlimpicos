@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import com.ingenieria.software.pumalimpicos.modelo.Competidor;
 import com.ingenieria.software.pumalimpicos.repositorio.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,10 @@ import java.util.Optional;
  **/
 @Service
 public class CompetidorServicio {
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
     /*Atributos*/
     private final CompetidorRepositorio competidorRepositorio;
 
@@ -59,6 +64,7 @@ public class CompetidorServicio {
         if (competidorOptional.isPresent()) {
             throw new IllegalStateException("Ya existe el competidor con el nombre dado.");
         }
+		competidor.setPassword(passwordEncoder.encode(competidor.getPassword()));
         competidorRepositorio.save(competidor);
     }
 

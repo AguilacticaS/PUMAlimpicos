@@ -2,10 +2,8 @@ package com.ingenieria.software.pumalimpicos.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.*;
 
@@ -17,29 +15,27 @@ import lombok.*;
  **/
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "competidor")
-public class Competidor {
+public class Competidor extends Usuario{
 
-    /*Atributos*/
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Getter @Setter private Long id;
-
-    @Column
-    @Getter @Setter private String nombre;
-
-    @Column
-    @Getter @Setter private String disciplina;
+	@Column @NotBlank(message="No debe ser vacío")
+	private String disciplina;
 
     /**
      * Constructor de Competidor.
      * @param nombre Nombre del competidor.
      * @param disciplina Disciplina del competidor.
      **/
-    public Competidor(String nombre, String disciplina){
-        this.nombre = nombre;
-        this.disciplina = disciplina;
-    }
+	public Competidor(String nombre, String apellidoP,
+    String apellidoM, String email,
+    String username, String rol,
+    String password, String disciplina) {
+		super(nombre, apellidoP,
+        apellidoM, email, username, rol, password);
+		this.disciplina = disciplina;
+	}
 }

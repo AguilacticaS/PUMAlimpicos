@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import com.ingenieria.software.pumalimpicos.modelo.Usuario;
 import com.ingenieria.software.pumalimpicos.repositorio.UsuarioRepositorio;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class UsuarioConfiguracion {
     
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
     @Bean
     CommandLineRunner userCommandLineRunner(UsuarioRepositorio repository) {
         return args -> {
@@ -18,38 +23,26 @@ public class UsuarioConfiguracion {
                     "Diana",
                     "Patricio",
                     "Pascual",
-                    "dianapp@gmail.com",
-                    "Dianapp",
-                    "Competidor",
-                    "12345dpp"
-            );
-            
-            Usuario user2 = new Usuario(
-                    "Jose",
-                    "Cruz",
-                    "Perez",
-                    "josecp@gmail.com",
-                    "Josecp",
+                    "diana@gmail.com",
+                    "diana",
                     "Entrenador",
-                    "12345jcp"
+                    passwordEncoder.encode("diana") 
             );
-            
-            Usuario user3 = new Usuario(
-                    "Maria",
-                    "Rodriguez",
-                    "Morales",
-                    "mariarm@gmail.com",
-                    "Mariarm",
-                    "Juez",
-                    "12345mrm"
+
+            Usuario user2 = new Usuario(
+                    "Marco Antonio",
+                    "Velasco",
+                    "Flores",
+                    "marco@gmail.com",
+                    "marco",
+                    "Entrenador",
+                    passwordEncoder.encode("marco") 
             );
             
             repository.saveAll(
                 new ArrayList<Usuario>() {{
                     add(user1);
                     add(user2);
-                    add(user3);
-                    
                 }}
             );
         };

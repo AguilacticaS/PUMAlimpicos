@@ -2,17 +2,20 @@ package com.ingenieria.software.pumalimpicos.controlador;
 
 import com.ingenieria.software.pumalimpicos.modelo.Competidor;
 import com.ingenieria.software.pumalimpicos.servicio.CompetidorServicio;
+import com.ingenieria.software.pumalimpicos.servicio.DisciplinaServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * Clase Entrenador Controlador.
@@ -26,31 +29,38 @@ public class EntrenadorControlador {
 
     /*Atributos*/
     private final CompetidorServicio competidorServicio;
+    private final DisciplinaServicio disciplinaServicio;
 
     /**
      * Constructor
      * @param competidorServicio
      **/
     @Autowired
-    EntrenadorControlador(CompetidorServicio competidorServicio){
+    EntrenadorControlador(CompetidorServicio competidorServicio,
+    DisciplinaServicio disciplinaServicio){
         this.competidorServicio = competidorServicio;
+        this.disciplinaServicio = disciplinaServicio;
     }
+
+
 
     /**
      * Método para agregar un competidor.
      **/
     @GetMapping("/agregar")
-    public String agregarCompetidor(){
+    public String agregarCompetidor(Model model){
+		model.addAttribute("competidor", new Competidor());
+        model.addAttribute("disciplinas", disciplinaServicio.getDisciplinas());
         return "competidor/agregar";
     }
 
     @PostMapping("/agregar")
-    public String registra(HttpServletRequest request, Model model){
-        Competidor nuevoCompetidor = new Competidor(
-                request.getParameter("nombre"),
-                request.getParameter("disciplina")
-        );
-        competidorServicio.agregaCompetidor(nuevoCompetidor);
+    public String registra(@Valid @ModelAttribute Competidor competidor, BindingResult result, Model model){
+		if(result.hasErrors()){
+			return "redirect:competidor/agregar";
+		}else{
+            competidorServicio.agregaCompetidor(competidor);
+		}
         model.addAttribute("competidores", competidorServicio.getCompetidores());
         return "competidor/consultar";
     }

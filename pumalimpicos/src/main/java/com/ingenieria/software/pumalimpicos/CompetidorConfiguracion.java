@@ -15,38 +15,30 @@ public class CompetidorConfiguracion {
     @Bean
     CommandLineRunner competidorCommandLineRunner(CompetidorRepositorio repository){
         return args -> {
-            Competidor atletismo = new Competidor(
-                    "Martín Hernandez",
-                    "Ateltismo"
+            Competidor competidor1 = new Competidor(
+                    "Lilith",
+                    "Patricio",
+                    "Pascual",
+                    "dianapp@gmail.com",
+                    "Dianapp",
+                    "Competidor",
+                    "12345dpp",
+                    "atletismo"
             );
-            Competidor natacion = new Competidor(
-                    "Tomás Hernandez",
-                    "Natacion"
-            );
-            Competidor tenis = new Competidor(
-                    "Juan García",
-                    "Tenis"
-            );
-            Competidor boxeo = new Competidor(
-                    "Giselle Montero",
-                    "Boxeo"
-            );
-            Competidor halterofilia = new Competidor(
-                    "Yaheni Garcia",
-                    "Halterofilia"
-            );
-            Competidor futbol = new Competidor(
-                    "Oscar Muñoz",
-                    "Futbol"
+            Competidor competidor2 = new Competidor(
+                    "test",
+                    "test",
+                    "test",
+                    "test@gmail.com",
+                    "test",
+                    "Competidor",
+                    "12345dpp",
+                    "Karate"
             );
             repository.saveAll(
                     new ArrayList<Competidor>() {{
-                        add(atletismo);
-                        add(natacion);
-                        add(tenis);
-                        add(boxeo);
-                        add(halterofilia);
-                        add(futbol);
+                        add(competidor1);
+                        add(competidor2);
                     }}
             );
         };

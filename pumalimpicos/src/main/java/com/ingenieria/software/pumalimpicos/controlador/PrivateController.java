@@ -12,13 +12,13 @@ import com.ingenieria.software.pumalimpicos.modelo.Usuario;
 import com.ingenieria.software.pumalimpicos.servicio.UsuarioServicio;
 
 @Controller
-@RequestMapping("/private")
+@RequestMapping("/profile")
 public class PrivateController{
 	@Autowired
 	private UsuarioServicio usuarioServicio;
 	
-	@GetMapping("/index")
-	public String index(Authentication auth, HttpSession session) {
+	@GetMapping("/")
+	public String profile(Authentication auth, HttpSession session) {
 		//nombre de usuario en la sesion 
 		String username = auth.getName();
 		if(session.getAttribute("usuario")==null) {
@@ -27,6 +27,6 @@ public class PrivateController{
 			session.setAttribute("usuario", usuario);
 		}
 		
-		return "index";
+		return "profile";
 	}
 }

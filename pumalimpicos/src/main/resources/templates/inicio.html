@@ -10,8 +10,8 @@
 	<body>
   <header th:replace="fragments/header::header"></header>
    
-   <a class="a-style" th:href="@{/auth/login}">Login</a>
-   <a class="a-style" th:href="@{auth/registro}">Registro</a>
+   <a  th:if="${session.usuario == null}" class="a-style" th:href="@{/auth/login}">Login</a>
+   <a  th:if="${session.usuario == null}" class="a-style" th:href="@{auth/registro}">Registro</a>
   
    <footer th:replace="fragments/footer::footer"></footer>
 	</body>

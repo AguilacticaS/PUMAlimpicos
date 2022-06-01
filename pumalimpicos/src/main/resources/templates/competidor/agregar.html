@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <header th:replace="fragments/header::header"></header>
     <main>
 
@@ -18,20 +17,46 @@
 
             <div class="page-content">
                 <div class="form-v5-content">
-                    <form class="form-detail" th:action="@{/competidores/agregar}" method="post">
+                    <form th:action="@{/competidores/agregar}" th:object="${competidor}" method="POST" class="form-detail">
                         <h2>Agregar Competidor</h2>
+
                         <div class="form-row">
-                            <label for="nombre">Nombre del Competidor</label>
-                            <input type="text" name="nombre" id="nombre" class="input-text"
-                                placeholder="Introduce el nombre" required>
-                            <i class="fa-solid fa-person-running"></i>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="input-text" name="nombre" th:field="*{nombre}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="apellidoP">Apellido Paterno</label>
+                            <input type="text" class="input-text" name="apellidoP" th:field="*{apellidoP}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="apellidoM">Apellido materno</label>
+                            <input type="text" class="input-text" name="apellidoM" th:field="*{apellidoM}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input type="text" class="input-text" name="email" th:field="*{email}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="username">Username</label>
+                            <input type="text" class="input-text" name="username" th:field="*{Username}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="rol">Rol</label>
+                            <select id="rol" name="rol" class="input-text" th:field="*{rol}">
+                                <option value="Competidor" selected>Competidor</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="password">Password</label>
+                            <input type="text" class="input-text" name="password" th:field="*{password}" required />
                         </div>
                         <div class="form-row">
                             <label for="disciplina">Disciplina</label>
-                            <input type="text" name="disciplina" id="disciplina" class="input-text"
-                                placeholder="Disciplina" required>
-                            <i class="fa-solid fa-quote-right"></i>
+                            <select id="disciplina" name="disciplina" class="input-text" th:field="*{disciplina}">
+                                <option th:each="single : ${disciplinas}" th:value="${single.nombre}" th:text="${single.nombre}"></option>
+                            </select>
                         </div>
+
                         <div class="form-row-last">
                             <input type="submit" name="Agregar" class="register" value="Agregar">
                             <a class="return" th:href="@{/menuentrenador/}">Regresar</a>
@@ -44,6 +69,7 @@
 
     </main>
     <footer th:replace="fragments/footer::footer"></footer>
+
 </body>
 
 </html>
