@@ -1,7 +1,6 @@
 package com.ingenieria.software.pumalimpicos.servicio;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -82,37 +81,37 @@ public class JuezServicio {
                 .orElseThrow(() -> new IllegalStateException(advertencia));
 
         boolean repeated = false;
-        if (nombre != null){
+        if (!nombre.equals("")){
             repeated = nombre.equals(juez.getNombre());
             if (!repeated) juez.setNombre(nombre);
         } 
 
-        if (apellidoP != null){
+        if (!apellidoP.equals("")){
             repeated = apellidoP.equals(juez.getApellidoP());
             if (!repeated) juez.setApellidoP(apellidoP);
         } 
 
-        if (apellidoM != null){
+        if (!apellidoM.equals("")){
             repeated = apellidoM.equals(juez.getApellidoM());
             if (!repeated) juez.setApellidoM(apellidoM);
         } 
 
-        if (email != null){
+        if (!email.equals("")){
             repeated = email.equals(juez.getEmail());
             if (!repeated) juez.setEmail(email);
         } 
 
-        if (username != null){
+        if (!username.equals("")){
             repeated = username.equals(juez.getUsername());
             if (!repeated) juez.setUsername(username);
         } 
 
-        if (password != null){
+        if (!password.equals("")){
             repeated = passwordEncoder.encode(password).equals(juez.getPassword());
             if (!repeated) juez.setPassword(passwordEncoder.encode(password));
         } 
 
-        if (disciplina != null){
+        if (!disciplina.equals("")){
             repeated = disciplina.equals(juez.getDisciplina());
             if (!repeated)juez.setDisciplina(disciplina);
         } 

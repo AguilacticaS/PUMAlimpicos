@@ -101,37 +101,37 @@ public class CompetidorServicio {
                 .orElseThrow(() -> new IllegalStateException(advertencia));
 
         boolean repeated = false;
-        if (nombre != null){
+        if (!nombre.equals("")){
             repeated = nombre.equals(competidor.getNombre());
             if (!repeated) competidor.setNombre(nombre);
         } 
 
-        if (apellidoP != null){
+        if (!apellidoP.equals("")){
             repeated = apellidoP.equals(competidor.getApellidoP());
             if (!repeated) competidor.setApellidoP(apellidoP);
         } 
 
-        if (apellidoM != null){
+        if (!apellidoM.equals("")){
             repeated = apellidoM.equals(competidor.getApellidoM());
             if (!repeated) competidor.setApellidoM(apellidoM);
         } 
 
-        if (email != null){
+        if (!email.equals("")){
             repeated = email.equals(competidor.getEmail());
             if (!repeated) competidor.setEmail(email);
         } 
 
-        if (username != null){
+        if (!username.equals("")){
             repeated = username.equals(competidor.getUsername());
             if (!repeated) competidor.setUsername(username);
         } 
 
-        if (password != null){
+        if (!password.equals("")){
             repeated = passwordEncoder.encode(password).equals(competidor.getPassword());
             if (!repeated) competidor.setPassword(passwordEncoder.encode(password));
         } 
 
-        if (disciplina != null){
+        if (!disciplina.equals("")){
             repeated = disciplina.equals(competidor.getDisciplina());
             if (!repeated)competidor.setDisciplina(disciplina);
         } 
