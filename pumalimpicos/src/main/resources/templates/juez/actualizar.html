@@ -10,49 +10,48 @@
 </head>
 
 <body>
-
     <header th:replace="fragments/header::header"></header>
     <main>
-
 
         <div class="form-v5">
 
             <div class="page-content">
                 <div class="form-v5-content">
-                    <form class="form-detail" th:action="@{/menujuez/guardar}" th:object="${juez}" method="post">
+                    <form th:action="@{/menujuez/actualizar}" method="POST" class="form-detail">
                         <h2>Actualizar Juez</h2>
                         <div class="form-row">
-                            <input type="hidden" th:field="*{id}" />
-                            <label for="nombre">Nombre del juez</label>
-                            <input type="text" th:field="*{nombre}" class="input-text" placeholder="Nombre" required>
-                            <i class="fa-solid fa-person-running"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('nombre')}"
-                                th:errors="*{nombre}"></div> 
+                            <label for="nombre">Nombre</label>
+                            <input type="hidden" id="id" name="id" class="form-control" th:value="${juez.id}" />
+                            <input type="text" class="input-text" name="nombre" th:value="${juez.nombre}" required />
                         </div>
                         <div class="form-row">
-                            <label for="apellidoPaterno" class="form-label">Apellido paterno del juez</label>
-                            <input type="text" placeholder="Apellido paterno" th:field="*{apellidoP}"
-                                class="input-text" required />
-                            <i class="fa-solid fa-quote-right"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoP')}"
-                                th:errors="*{apellidoPaterno}"></div>
+                            <label for="apellidoP">Apellido Paterno</label>
+                            <input type="text" class="input-text" name="apellidoP" th:value="${juez.apellidoP}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="apellidoM">Apellido materno</label>
+                            <input type="text" class="input-text" name="apellidoM" th:value="${juez.apellidoM}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input type="text" class="input-text" name="email" th:value="${juez.email}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="username">Username</label>
+                            <input type="text" class="input-text" name="username" th:value="${juez.Username}" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="password">Password</label>
+                            <input type="text" class="input-text" name="password"/>
+                        </div>
+                        <div class="form-row">
+                            <label for="disciplina">Disciplina</label>
+                            <select id="disciplina" name="disciplina" class="input-text">
+                                <option th:value="${juez.disciplina}" th:text="${juez.disciplina}" selected></option>
+                                <option th:each="single : ${disciplinas}" th:value="${single.nombre}" th:text="${single.nombre}"></option>
+                            </select>
                         </div>
 
-                        <div class="form-row">
-                            <label for="apellidoMaterno" class="form-label">Apellido materno del juez</label>
-                            <input type="text" placeholder="Apellido materno" th:field="*{apellidoM}"
-                                class="input-text" />
-                            <i class="fa-solid fa-quote-right"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoM')}"
-                                th:errors="*{apellidoMaterno}"></div>
-                        </div>
-                        <div class="form-row">
-                            <label for="email" class="form-label">Correo electrónico del juez</label>
-                            <input type="text" placeholder="email" th:field="*{email}" class="input-text" required />
-                            <i class="fa-solid fa-quote-right"></i>
-                            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-                                Correo no válido</div>
-                        </div>
                         <div class="form-row-last">
                             <input type="submit" name="Agregar" class="register" value="Actualizar">
                             <a class="return" th:href="@{/menujuez/}">Regresar</a>
@@ -62,8 +61,10 @@
             </div>
         </div>
 
+
     </main>
     <footer th:replace="fragments/footer::footer"></footer>
+
 </body>
 
 </html>

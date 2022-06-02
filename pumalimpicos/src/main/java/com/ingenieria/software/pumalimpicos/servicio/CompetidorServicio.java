@@ -88,15 +88,53 @@ public class CompetidorServicio {
      * @param disciplina Disciplina del competidor.
      **/
     @Transactional
-    public void actualizaCompetidor(Long competidorId, String nombre, String disciplina){
+    public void actualizaCompetidor(Long competidorId,
+                                    String nombre,
+                                    String apellidoP,
+                                    String apellidoM,
+                                    String email,
+                                    String username,
+                                    String password,
+                                    String disciplina){
         String advertencia = "Competidor con Id: " + competidorId + "no existe.";
         Competidor competidor = competidorRepositorio.findById(competidorId)
                 .orElseThrow(() -> new IllegalStateException(advertencia));
 
-        boolean nom = nombre.equals(competidor.getNombre());
-        if (nombre != null && !nom) competidor.setNombre(nombre);
+        boolean repeated = false;
+        if (nombre != null){
+            repeated = nombre.equals(competidor.getNombre());
+            if (!repeated) competidor.setNombre(nombre);
+        } 
 
-        boolean disci = disciplina.equals(competidor.getDisciplina());
-        if (disciplina != null && !disci) competidor.setDisciplina(disciplina);
+        if (apellidoP != null){
+            repeated = apellidoP.equals(competidor.getApellidoP());
+            if (!repeated) competidor.setApellidoP(apellidoP);
+        } 
+
+        if (apellidoM != null){
+            repeated = apellidoM.equals(competidor.getApellidoM());
+            if (!repeated) competidor.setApellidoM(apellidoM);
+        } 
+
+        if (email != null){
+            repeated = email.equals(competidor.getEmail());
+            if (!repeated) competidor.setEmail(email);
+        } 
+
+        if (username != null){
+            repeated = username.equals(competidor.getUsername());
+            if (!repeated) competidor.setUsername(username);
+        } 
+
+        if (password != null){
+            repeated = passwordEncoder.encode(password).equals(competidor.getPassword());
+            if (!repeated) competidor.setPassword(passwordEncoder.encode(password));
+        } 
+
+        if (disciplina != null){
+            repeated = disciplina.equals(competidor.getDisciplina());
+            if (!repeated)competidor.setDisciplina(disciplina);
+        } 
+
     }
 }

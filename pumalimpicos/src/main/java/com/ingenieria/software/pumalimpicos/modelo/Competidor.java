@@ -25,6 +25,11 @@ public class Competidor extends Usuario{
 	@Column @NotBlank(message="No debe ser vacío")
 	private String disciplina;
 
+	@Column
+	private String comentarios;
+
+	@Column
+	private Long calificacion;
     /**
      * Constructor de Competidor.
      * @param nombre Nombre del competidor.
@@ -37,5 +42,7 @@ public class Competidor extends Usuario{
 		super(nombre, apellidoP,
         apellidoM, email, username, rol, password);
 		this.disciplina = disciplina;
+        this.comentarios = "";
+        this.calificacion = 0L;
 	}
 }

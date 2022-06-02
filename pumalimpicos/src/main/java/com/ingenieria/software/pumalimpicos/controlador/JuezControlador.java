@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
+import com.ingenieria.software.pumalimpicos.servicio.DisciplinaServicio;
 import com.ingenieria.software.pumalimpicos.servicio.JuezServicio;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +29,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class JuezControlador {
 
     private final JuezServicio juezServicio;
+    private final DisciplinaServicio disciplinaServicio;
 
     @Autowired
-    JuezControlador(JuezServicio juezServicio) {
+    JuezControlador(JuezServicio juezServicio,
+    DisciplinaServicio disciplinaServicio) {
         this.juezServicio = juezServicio;
+        this.disciplinaServicio = disciplinaServicio;
+    }
+
+    @GetMapping("/competidores")
+    public String verCompetidores() {
+        //model.addAttribute("juez", new Juez());
+       // List<Disciplina> enums = Arrays.asList(Disciplina.values());
+      // model.addAttribute("disciplinas", enums);
+        return "juez/competidores";
     }
 
     @RequestMapping()
@@ -102,22 +114,29 @@ public class JuezControlador {
     public String actualizaJuez(@RequestParam Long juezId, Model model) {
         Juez juez = juezServicio.getJuezById(juezId);
         model.addAttribute("juez", juez);
+        model.addAttribute("disciplinas", disciplinaServicio.getDisciplinas());
         return "juez/actualizar";
     }
-    /*@GetMapping("/actualizar")
-    public String actualizaJuez(@RequestParam String nombre, 
-                                @PathVariable("apellidoPaterno") String apellidoPaterno, 
-                                @PathVariable("apellidoMaterno") String apellidoMaterno, 
-                                Model model) {
-        model.addAttribute("juez", juezServicio.getJuezByNombreYApellidos(nombre,
-                                                    apellidoPaterno, apellidoMaterno));
-        return "juez/actualizar";
-    }*/
+
+    @PostMapping("/actualizar")
+    public String actualiza(HttpServletRequest request, Model model){
+        juezServicio.actualizaJuez(Long.parseLong(request.getParameter("id")),
+                                               request.getParameter("nombre"),
+                                               request.getParameter("apellidoP"),
+                                               request.getParameter("apellidoM"),
+                                               request.getParameter("email"),
+                                               request.getParameter("username"),
+                                               request.getParameter("password"),
+                                               request.getParameter("disciplina"));
+        model.addAttribute("jueces", juezServicio.getJueces());
+        return "juez/verlista";
+    }
 
     @GetMapping("/agregar")
     public String agregarJuez(Model model) {
         Juez nuevoJuez = new Juez();
         model.addAttribute("juez", nuevoJuez);
+        model.addAttribute("disciplinas", disciplinaServicio.getDisciplinas());
         return "juez/agregar";
     }
 

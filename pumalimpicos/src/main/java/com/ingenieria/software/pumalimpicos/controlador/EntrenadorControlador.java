@@ -43,6 +43,10 @@ public class EntrenadorControlador {
     }
 
 
+    @GetMapping("/calificacion")
+    public String calificacionCompetidor(){
+        return "competidor/calificacion";
+    }
 
     /**
      * Método para agregar un competidor.
@@ -99,6 +103,7 @@ public class EntrenadorControlador {
     @GetMapping("/actualizar/{id}")
     public String actualizaCompetidor(@PathVariable("id") Long id, Model model){
         model.addAttribute("competidor",competidorServicio.getCompetidor(id));
+        model.addAttribute("disciplinas", disciplinaServicio.getDisciplinas());
         return "competidor/actualizarcompetidor";
     }
 
@@ -106,6 +111,11 @@ public class EntrenadorControlador {
     public String actualiza(HttpServletRequest request, Model model){
         competidorServicio.actualizaCompetidor(Long.parseLong(request.getParameter("id")),
                                                request.getParameter("nombre"),
+                                               request.getParameter("apellidoP"),
+                                               request.getParameter("apellidoM"),
+                                               request.getParameter("email"),
+                                               request.getParameter("username"),
+                                               request.getParameter("password"),
                                                request.getParameter("disciplina"));
         model.addAttribute("competidores", competidorServicio.getCompetidores());
         return "competidor/actualizar";

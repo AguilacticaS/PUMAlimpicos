@@ -69,21 +69,53 @@ public class JuezServicio {
     }
 
     @Transactional
-    public void actualizaJuez(Long juezId, String nombre, String apellidoPaterno, 
-                                String apellidoMaterno, String email) {
+    public void actualizaJuez(Long juezId,
+                                    String nombre,
+                                    String apellidoP,
+                                    String apellidoM,
+                                    String email,
+                                    String username,
+                                    String password,
+                                    String disciplina){
+        String advertencia = "Juez con Id: " + juezId + "no existe.";
         Juez juez = juezRepositorio.findById(juezId)
-        .orElseThrow(() -> new IllegalStateException(
-            "juez con id " + juezId + " no existe."
-        ));
+                .orElseThrow(() -> new IllegalStateException(advertencia));
 
-        if(((nombre != null ) && (apellidoPaterno != null) && (apellidoMaterno != null)) && (email != null)
-            && (!nombre.equals(juez.getNombre()) || !apellidoPaterno.equals(juez.getApellidoP())
-            || !apellidoMaterno.equals(juez.getApellidoM())|| !email.equals(juez.getEmail()))) {
-            juez.setNombre(nombre);
-            juez.setApellidoP(apellidoPaterno);
-            juez.setApellidoM(apellidoMaterno);
-            juez.setEmail(email);
-        }
+        boolean repeated = false;
+        if (nombre != null){
+            repeated = nombre.equals(juez.getNombre());
+            if (!repeated) juez.setNombre(nombre);
+        } 
+
+        if (apellidoP != null){
+            repeated = apellidoP.equals(juez.getApellidoP());
+            if (!repeated) juez.setApellidoP(apellidoP);
+        } 
+
+        if (apellidoM != null){
+            repeated = apellidoM.equals(juez.getApellidoM());
+            if (!repeated) juez.setApellidoM(apellidoM);
+        } 
+
+        if (email != null){
+            repeated = email.equals(juez.getEmail());
+            if (!repeated) juez.setEmail(email);
+        } 
+
+        if (username != null){
+            repeated = username.equals(juez.getUsername());
+            if (!repeated) juez.setUsername(username);
+        } 
+
+        if (password != null){
+            repeated = passwordEncoder.encode(password).equals(juez.getPassword());
+            if (!repeated) juez.setPassword(passwordEncoder.encode(password));
+        } 
+
+        if (disciplina != null){
+            repeated = disciplina.equals(juez.getDisciplina());
+            if (!repeated)juez.setDisciplina(disciplina);
+        } 
 
     }
 }
