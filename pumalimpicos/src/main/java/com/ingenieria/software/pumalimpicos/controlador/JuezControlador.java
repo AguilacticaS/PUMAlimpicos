@@ -3,10 +3,12 @@ package com.ingenieria.software.pumalimpicos.controlador;
 import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.ingenieria.software.pumalimpicos.modelo.Disciplina;
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
+import com.ingenieria.software.pumalimpicos.servicio.CompetidorServicio;
 import com.ingenieria.software.pumalimpicos.servicio.DisciplinaServicio;
 import com.ingenieria.software.pumalimpicos.servicio.JuezServicio;
 import org.springframework.stereotype.Controller;
@@ -30,19 +32,23 @@ public class JuezControlador {
 
     private final JuezServicio juezServicio;
     private final DisciplinaServicio disciplinaServicio;
+    private final CompetidorServicio competidorServicio;
 
     @Autowired
     JuezControlador(JuezServicio juezServicio,
-    DisciplinaServicio disciplinaServicio) {
+    DisciplinaServicio disciplinaServicio,
+    CompetidorServicio competidorServicio) {
         this.juezServicio = juezServicio;
         this.disciplinaServicio = disciplinaServicio;
+        this.competidorServicio = competidorServicio;
     }
 
     @GetMapping("/competidores")
-    public String verCompetidores() {
-        //model.addAttribute("juez", new Juez());
+    public String verCompetidores(Model model, HttpSession session) {
+         //model.addAttribute("juez", new Juez());
        // List<Disciplina> enums = Arrays.asList(Disciplina.values());
       // model.addAttribute("disciplinas", enums);
+      model.addAttribute("competidores", competidorServicio.getCompetidores());
         return "juez/competidores";
     }
 
