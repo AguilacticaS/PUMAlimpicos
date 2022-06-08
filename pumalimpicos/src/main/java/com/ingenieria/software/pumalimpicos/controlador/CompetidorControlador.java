@@ -29,7 +29,7 @@ public class CompetidorControlador {
 
     @GetMapping("/posiciones")
     public String  posicionesCompetidor(Model model){
-        model.addAttribute("competidores",competidorServicio.getCompetidores());
+        model.addAttribute("competidores",competidorServicio.getCompetidoresPorCalif());
         return "competidor/posiciones";
     }
 }

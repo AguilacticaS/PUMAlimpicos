@@ -44,6 +44,16 @@ public class CompetidorServicio {
     }
 
     /**
+     * Método que obtiene la lista de competidores del repositorio
+     * ordenados de forma descendente de acuerdo a su calificación.
+     *
+     * @return List<Competidor> - lista con los competidores ordenados.
+     */
+    public List<Competidor> getCompetidoresPorCalif() {
+        return competidorRepositorio.findAllByOrderByCalificacionDesc();
+    }
+
+    /**
      * Método que devuelve un competidor con el Id i.
      * @param competidorId - identificador del competidor
      * @throws IllegalStateException Si el competidor no se encuentra
