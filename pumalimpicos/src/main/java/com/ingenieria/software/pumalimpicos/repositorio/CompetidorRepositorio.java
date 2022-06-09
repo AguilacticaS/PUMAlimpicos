@@ -14,5 +14,8 @@ public interface CompetidorRepositorio extends JpaRepository<Competidor, Long>{
     @Query("SELECT j FROM Competidor j WHERE j.nombre = ?1")
     Optional<Competidor> findCompetidorByNombre(String nombre);
 
+    @Query("SELECT j FROM Competidor j WHERE j.entrenadorID = ?1")
+    public List<Competidor> findByEntrenadorID(Long entrenadorID);
+
     public List<Competidor> findAllByOrderByCalificacionDesc();
 }

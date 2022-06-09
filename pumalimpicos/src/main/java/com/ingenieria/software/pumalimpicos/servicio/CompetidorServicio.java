@@ -65,6 +65,16 @@ public class CompetidorServicio {
     }
 
     /**
+     * Método que devuelve los competidores con el ID de su entrenadorc.
+     * @param entrenadorID - identificador del entrenador
+     * @throws IllegalStateException Si el competidor no se encuentra
+     *         registrado en el sistema
+     **/
+    public List<Competidor> getMisCompetidores(Long entreandorId){
+        return competidorRepositorio.findByEntrenadorID(entreandorId);
+    }
+
+    /**
      * Método que agrega un competidor al repositorio.
      * @param competidor El competidor a agregar.
      **/

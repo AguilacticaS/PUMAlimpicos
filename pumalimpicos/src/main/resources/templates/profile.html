@@ -17,6 +17,7 @@
     <h1 th:if="${session.usuario !=null}">
       <a class="a-style" th:if="${session.usuario.rol == 'Entrenador'}" th:href="@{/menuentrenador/}"> Menu
         Principal</a>
+      <a class="a-style" th:if="${session.usuario.rol == 'Entrenador'}" th:href="@{/pos/posiciones/__${session.usuario.id}__}">Ver Mis Competidores</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Juez'}" th:href="@{/menujuez/competidores}">Ver Competidores</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Competidor'}" th:href="@{/competidores/calificacion}">Ver Califacion</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Competidor'}" th:href="@{/pos/posiciones}">Tabla de Posiciones</a>

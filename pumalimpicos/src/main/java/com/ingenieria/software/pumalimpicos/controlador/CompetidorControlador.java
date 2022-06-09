@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,6 +31,12 @@ public class CompetidorControlador {
     @GetMapping("/posiciones")
     public String  posicionesCompetidor(Model model){
         model.addAttribute("competidores",competidorServicio.getCompetidoresPorCalif());
+        return "competidor/posiciones";
+    }
+
+    @GetMapping("/posiciones/{entrenadorID}")
+    public String eliminarJuez(@PathVariable("entrenadorID") Long entrenadorID, Model model) {
+        model.addAttribute("competidores", competidorServicio.getMisCompetidores(entrenadorID));
         return "competidor/posiciones";
     }
 }

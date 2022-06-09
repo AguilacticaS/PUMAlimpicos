@@ -30,11 +30,26 @@ public class Competidor extends Usuario{
 
 	@Column
 	private Long calificacion;
+
+    @Column
+    private Long entrenadorID;
     /**
      * Constructor de Competidor.
      * @param nombre Nombre del competidor.
      * @param disciplina Disciplina del competidor.
      **/
+	public Competidor(String nombre, String apellidoP,
+    String apellidoM, String email,
+    String username, String rol,
+    String password, String disciplina, Long entrenadorID) {
+		super(nombre, apellidoP,
+        apellidoM, email, username, rol, password);
+		this.disciplina = disciplina;
+        this.comentarios = "";
+        this.calificacion = 0L;
+        this.entrenadorID = entrenadorID;
+	}
+
 	public Competidor(String nombre, String apellidoP,
     String apellidoM, String email,
     String username, String rol,
@@ -44,5 +59,6 @@ public class Competidor extends Usuario{
 		this.disciplina = disciplina;
         this.comentarios = "";
         this.calificacion = 0L;
+        this.entrenadorID = 0L;
 	}
 }

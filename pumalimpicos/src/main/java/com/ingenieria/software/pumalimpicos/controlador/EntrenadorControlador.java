@@ -1,10 +1,13 @@
 package com.ingenieria.software.pumalimpicos.controlador;
 
 import com.ingenieria.software.pumalimpicos.modelo.Competidor;
+import com.ingenieria.software.pumalimpicos.modelo.Usuario;
 import com.ingenieria.software.pumalimpicos.servicio.CompetidorServicio;
 import com.ingenieria.software.pumalimpicos.servicio.DisciplinaServicio;
+import com.ingenieria.software.pumalimpicos.servicio.UsuarioServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +33,7 @@ public class EntrenadorControlador {
     /*Atributos*/
     private final CompetidorServicio competidorServicio;
     private final DisciplinaServicio disciplinaServicio;
+	private UsuarioServicio usuarioServicio;
 
     /**
      * Constructor
@@ -37,9 +41,10 @@ public class EntrenadorControlador {
      **/
     @Autowired
     EntrenadorControlador(CompetidorServicio competidorServicio,
-    DisciplinaServicio disciplinaServicio){
+    DisciplinaServicio disciplinaServicio, UsuarioServicio usuarioServicio){
         this.competidorServicio = competidorServicio;
         this.disciplinaServicio = disciplinaServicio;
+        this.usuarioServicio = usuarioServicio;
     }
 
 
@@ -59,10 +64,15 @@ public class EntrenadorControlador {
     }
 
     @PostMapping("/agregar")
-    public String registra(@Valid @ModelAttribute Competidor competidor, BindingResult result, Model model){
+    public String registra(@Valid @ModelAttribute Competidor competidor,
+    BindingResult result, Model model, Authentication auth){
 		if(result.hasErrors()){
 			return "redirect:competidor/agregar";
 		}else{
+		    String username = auth.getName();
+			Usuario usuario = usuarioServicio.findByUsername(username);
+            Long id = usuario.getId();
+            competidor.setEntrenadorID(id);
             competidorServicio.agregaCompetidor(competidor);
 		}
         model.addAttribute("competidores", competidorServicio.getCompetidores());
