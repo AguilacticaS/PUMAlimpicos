@@ -34,7 +34,7 @@
                         <td th:text="${competidor.disciplina}"></td>
                         <td th:text="${competidor.calificacion}"></td>
                         <td th:text="${competidor.comentarios}"></td>
-                        <td><a class="btn btn-dark" th:href="@{/menujuez/competidores/calificar/_${competidores.id}_}">Calificar y comentar</a></td>
+                        <td><a class="btn btn-dark" th:href="@{/menujuez/calificar/__${competidor.id}__}">Calificar y comentar</a></td>
                                                 
                     </tr>
                 </tbody>

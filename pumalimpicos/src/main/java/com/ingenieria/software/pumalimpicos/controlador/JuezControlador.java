@@ -45,9 +45,6 @@ public class JuezControlador {
 
     @GetMapping("/competidores")
     public String verCompetidores(Model model, HttpSession session) {
-         //model.addAttribute("juez", new Juez());
-       // List<Disciplina> enums = Arrays.asList(Disciplina.values());
-      // model.addAttribute("disciplinas", enums);
       model.addAttribute("competidores", competidorServicio.getCompetidores());
         return "juez/competidores";
     }
@@ -75,17 +72,17 @@ public class JuezControlador {
    
     @GetMapping("/calificar/{id}")
     public String calificarCompetidor(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("competidores", competidorServicio.getCompetidores(id));
-        return "competidores/calificar";
+        model.addAttribute("competidor", competidorServicio.getCompetidor(id));
+        return "juez/calificar";
     }
 
     @PostMapping("/calificar")
     public String califica(HttpServletRequest request, Model model) {
-        competidorServicio.calificarCompetidor(request.getParameter("nombre")), 
-                                               Long.parseLong(request.getParameter("calificación")),
-                                               request.getParameter("commentarios"));
+        competidorServicio.calificarCompetidor(Long.parseLong(request.getParameter("id")),
+                                               Long.parseLong(request.getParameter("calificacion")),
+                                               request.getParameter("comentarios"));
         model.addAttribute("competidores",  competidorServicio.getCompetidores());
-        return "competidores/calificar";
+        return "juez/competidores";
     }
 
     /*@PostMapping("/calificar")

@@ -18,13 +18,13 @@
 
             <div class="page-content">
                 <div class="form-v5-content">
-                    <form class="form-detail" th:action="@{/menujuez/competidores/calificar}" method="post">
+                    <form class="form-detail" th:action="@{/menujuez/calificar}" method="post">
                         <h2>Calificar Competidor</h2>
                         <div class="form-row">
                             <label for="nombre">Competidor</label>
-                            <input type="hidden" id="id" name="id" class="form-control" th:value="${competidor.nombre}" />
+                            <input type="hidden" id="id" name="id" class="form-control" th:value="${competidor.id}" />
                             <input type="text" name="nombre" id="nombre" class="input-text"
-                                placeholder="Ejemplo: Armando" th:value="${competidor.nombre}" required>
+                                placeholder="Ejemplo: Armando" th:value="${competidor.nombre}" disabled>
                             
                         </div>
                         <div class="form-row">
@@ -43,7 +43,7 @@
 
                         <div class="form-row-last">
                             <input type="submit" name="Actualizar" class="register" value="Actualizar">
-                            <a class="return" th:href="@{/competidores/}">Regresar</a>
+                            <a class="return" th:href="@{/menujuez/competidores}">Regresar</a>
                         </div>
                     </form>
                 </div>
