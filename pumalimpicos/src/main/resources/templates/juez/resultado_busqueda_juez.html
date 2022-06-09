@@ -26,7 +26,7 @@
               <th scope="col">Apellido Materno</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody th:each="juez : ${jueces}">
             <td th:text="${juez.nombre}"></td>
             <td th:text="${juez.apellidoP}"></td>
             <td th:text="${juez.apellidoM}"></td>

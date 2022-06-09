@@ -36,9 +36,32 @@ public class JuezServicio {
         .orElseThrow(() -> new IllegalStateException("no existe juez con el Id suministrado."));
     }
 
-    public Juez getJuezByNombreYApellidos(String nombre, String apellidoPaterno, String apellidoMaterno) {
-        return juezRepositorio.findJuezByNombreYApellidos(nombre, apellidoPaterno, apellidoMaterno)
-        .orElseThrow(() -> new IllegalStateException("no existe juez con el nombre suministrado." + nombre));
+    public List<Juez> getJuezByNombreYApellidos(String nombre, String apellidoPaterno, String apellidoMaterno) {
+        return juezRepositorio.findJuezByNombreYApellidos(nombre, apellidoPaterno, apellidoMaterno);
+    }
+
+    public List<Juez> getJuezByNombre(String nombre) {
+        return juezRepositorio.findJuezByNombre(nombre);
+    }
+
+    public List<Juez> getJuezByApellidoPaterno(String apellidoPaterno) {
+        return juezRepositorio.findJuezByApellidoPaterno(apellidoPaterno);
+    }
+
+    public List<Juez> getJuezByApellidoMaterno(String apellidoMaterno) {
+        return juezRepositorio.findJuezByApellidoMaterno(apellidoMaterno);
+    }
+
+    public List<Juez> getJuezByNombreYApellidoPaterno(String nombre, String apellidoPaterno) {
+        return juezRepositorio.findJuezByNombreYApellidoPaterno(nombre, apellidoPaterno);
+    }
+
+    public List<Juez> getJuezByNombreYApellidoMaterno(String nombre, String apellidoMaterno) {
+        return juezRepositorio.findJuezByNombreYApellidoMaterno(nombre, apellidoMaterno);
+    }
+
+    public List<Juez> getJuezByApellidoPaternoYApellidoMaterno(String apellidoPaterno, String apellidoMaterno) {
+        return juezRepositorio.findJuezByApellidoPaternoYApellidoMaterno(apellidoPaterno, apellidoMaterno);
     }
 
     /**
@@ -48,14 +71,6 @@ public class JuezServicio {
     public void agregaJuez(Juez juez) {
 		juez.setPassword(passwordEncoder.encode(juez.getPassword()));
         juezRepositorio.save(juez);
-        /*Optional<Juez> juezOptional = juezRepositorio.findJuezByNombreYApellidos(juez.getNombre(),
-                                        juez.getApellidoPaterno(), juez.getApellidoMaterno());
-        if (juezOptional.isPresent()) {
-            //throw new IllegalStateException("ya existe un juez con ese nombre");
-            juezRepositorio.save(juezOptional.get());
-        } else {
-            juezRepositorio.save(juez);
-        }*/
     }
 
     public void eliminaJuez(Long juezId) {

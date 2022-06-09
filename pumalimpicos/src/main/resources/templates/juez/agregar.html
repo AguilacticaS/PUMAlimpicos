@@ -22,33 +22,45 @@
 
                         <div class="form-row">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="input-text" name="nombre" th:field="*{nombre}" required />
+                            <input type="text" class="input-text" th:field="*{nombre}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('nombre')}"
+                                th:errors="*{nombre}"></div>
                         </div>
                         <div class="form-row">
                             <label for="apellidoP">Apellido Paterno</label>
-                            <input type="text" class="input-text" name="apellidoP" th:field="*{apellidoP}" required />
+                            <input type="text" class="input-text" th:field="*{apellidoP}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoP')}"
+                                th:errors="*{apellidoP}"></div>
                         </div>
                         <div class="form-row">
                             <label for="apellidoM">Apellido materno</label>
-                            <input type="text" class="input-text" name="apellidoM" th:field="*{apellidoM}" required />
+                            <input type="text" class="input-text" th:field="*{apellidoM}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('apellidoM')}"
+                                th:errors="*{apellidoM}"></div>
                         </div>
                         <div class="form-row">
                             <label for="email">Email</label>
-                            <input type="text" class="input-text" name="email" th:field="*{email}" required />
+                            <input type="text" class="input-text" th:field="*{email}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}"
+                                th:errors="*{email}"></div>
                         </div>
                         <div class="form-row">
                             <label for="username">Username</label>
-                            <input type="text" class="input-text" name="username" th:field="*{Username}" required />
+                            <input type="text" class="input-text" th:field="*{username}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}"
+                                th:errors="*{username}"></div>
                         </div>
+                        <label for="rol">Rol</label>
                         <div class="form-row">
-                            <label for="rol">Rol</label>
                             <select id="rol" name="rol" class="input-text" th:field="*{rol}">
                                 <option value="Juez" selected>Juez</option>
                             </select>
                         </div>
                         <div class="form-row">
                             <label for="password">Password</label>
-                            <input type="text" class="input-text" name="password" th:field="*{password}" required />
+                            <input type="text" class="input-text" name="password" th:field="*{password}" />
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}"></div>
                         </div>
                         <div class="form-row">
                             <label for="disciplina">Disciplina</label>

@@ -39,6 +39,16 @@ public class UsuarioConfiguracion {
                     passwordEncoder.encode("marco") 
             );
 
+            Usuario user3 = new Usuario(
+                    "Antonio",
+                    "Velasco",
+                    "Flores",
+                    "antonio@gmail.com",
+                    "antonio",
+                    "Entrenador",
+                    passwordEncoder.encode("antonio") 
+            );
+
             Usuario admin = new Usuario(
                     "admin",
                     "admin",
