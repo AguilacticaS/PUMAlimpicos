@@ -70,8 +70,18 @@ public class CompetidorServicio {
      * @throws IllegalStateException Si el competidor no se encuentra
      *         registrado en el sistema
      **/
-    public List<Competidor> getMisCompetidores(Long entreandorId){
-        return competidorRepositorio.findByEntrenadorID(entreandorId);
+    public List<Competidor> getMisCompetidores(Long entrenadorId){
+        return competidorRepositorio.findByEntrenadorID(entrenadorId);
+    }
+
+    /**
+     * Método que devuelve los competidores por su disciplina
+     * @param disciplina - String de la disciplina
+     * @throws IllegalStateException Si el competidor no se encuentra
+     *         registrado en el sistema
+     **/
+    public List<Competidor> getCompetidoresByDisciplina(String disciplina){
+        return competidorRepositorio.findByDisciplina(disciplina);
     }
 
     /**
@@ -89,6 +99,30 @@ public class CompetidorServicio {
     }
 
     /**
+     * Método para actualizar los datos de un competidor.
+     * @param  competidorId Id del competidor.
+     * @param nombre Nombre del competidor.
+     * @param disciplina Disciplina del competidor.
+     **/
+    @Transactional
+    public void calificarCompetidor(Long competidorId, Long calificacion,
+                                    String comentarios){
+        String advertencia = "Competidor con Id: " + competidorId + "no existe.";
+        Competidor competidor = competidorRepositorio.findById(competidorId)
+                .orElseThrow(() -> new IllegalStateException(advertencia));
+
+        boolean repeated = false;
+        if (calificacion != null){
+            competidor.setCalificacion(calificacion);
+        } 
+        if (!comentarios.equals("")){
+            repeated = comentarios.equals(competidor.getComentarios());
+            if (!repeated) competidor.setComentarios(comentarios);
+        } 
+
+    }
+
+    /**
      * Método para eliminar un competidor del repositorio.
      * @param competidorId Identificador del competidor.
      **/
@@ -100,6 +134,8 @@ public class CompetidorServicio {
             }
             competidorRepositorio.deleteById(competidorId);
     }
+
+
 
     /**
      * Método para actualizar los datos de un competidor.

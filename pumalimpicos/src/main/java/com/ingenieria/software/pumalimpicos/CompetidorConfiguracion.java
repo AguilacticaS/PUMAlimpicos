@@ -28,7 +28,9 @@ public class CompetidorConfiguracion {
                     "ixchel",
                     "Competidor",
                     passwordEncoder.encode("ixchel"),
-                    "Boxeo"
+                    "Boxeo",
+                     9L,
+                     "Buena ejecución"   
             );
             Competidor competidor2 = new Competidor(
                     "Armando",

@@ -28,11 +28,22 @@ public class JuezConfiguracion {
                     "arturo",
                     "Juez",
                     passwordEncoder.encode("arturo"),
-                    "Natacion"
+                    "Boxeo"
+            );
+            Juez juez2 = new Juez(
+                    "carmen",
+                    "Reynoso",
+                    "Sanchez",
+                    "carmen@gmail.com",
+                    "carmen",
+                    "Juez",
+                    passwordEncoder.encode("carmen"),
+                    "Tenis"
             );
             repository.saveAll(
                 new ArrayList<Juez>() {{
                     add(juez1);
+                    add(juez2);
                 }}
             );
         };

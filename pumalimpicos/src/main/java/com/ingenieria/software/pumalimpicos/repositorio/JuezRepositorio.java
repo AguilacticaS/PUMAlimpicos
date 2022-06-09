@@ -35,6 +35,5 @@ public interface JuezRepositorio extends JpaRepository<Juez, Long> {
     public List<Juez> findJuezByApellidoPaternoYApellidoMaterno(@Param("apellidoP") String apellidoP,
                         @Param("apellidoM") String apellidoM);
 
-    //@Query("SELECT j FROM Juez j WHERE j.disciplina = ?1")
-    //List<Juez> findJuezByDisciplina(Disciplina disciplina);
+	public Juez findByUsername(String username);
 }

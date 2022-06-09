@@ -2,9 +2,12 @@ package com.ingenieria.software.pumalimpicos.controlador;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.springframework.security.core.Authentication;
 
 import com.ingenieria.software.pumalimpicos.modelo.Juez;
+import com.ingenieria.software.pumalimpicos.servicio.CompetidorServicio;
 import com.ingenieria.software.pumalimpicos.servicio.DisciplinaServicio;
 import com.ingenieria.software.pumalimpicos.servicio.JuezServicio;
 import org.springframework.stereotype.Controller;
@@ -24,19 +27,23 @@ public class JuezControlador {
 
     private final JuezServicio juezServicio;
     private final DisciplinaServicio disciplinaServicio;
+    private final CompetidorServicio competidorServicio;
 
     @Autowired
     JuezControlador(JuezServicio juezServicio,
-            DisciplinaServicio disciplinaServicio) {
+    DisciplinaServicio disciplinaServicio,
+    CompetidorServicio competidorServicio) {
         this.juezServicio = juezServicio;
         this.disciplinaServicio = disciplinaServicio;
+        this.competidorServicio = competidorServicio;
     }
 
     @GetMapping("/competidores")
-    public String verCompetidores() {
-        // model.addAttribute("juez", new Juez());
-        // List<Disciplina> enums = Arrays.asList(Disciplina.values());
-        // model.addAttribute("disciplinas", enums);
+    public String verCompetidores(Model model, Authentication auth) {
+		String username = auth.getName();
+		Juez juez = juezServicio.findByUsername(username);
+        String disciplina = juez.getDisciplina();
+        model.addAttribute("competidores", competidorServicio.getCompetidoresByDisciplina(disciplina));
         return "juez/competidores";
     }
 
@@ -49,6 +56,26 @@ public class JuezControlador {
     public String verBuscarJuez() {
         return "juez/buscar";
     }
+
+   
+    @GetMapping("/calificar/{id}")
+    public String calificarCompetidor(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("competidor", competidorServicio.getCompetidor(id));
+        return "juez/calificar";
+    }
+
+    @PostMapping("/calificar")
+    public String califica(HttpServletRequest request, Model model, Authentication auth) {
+        competidorServicio.calificarCompetidor(Long.parseLong(request.getParameter("id")),
+                                               Long.parseLong(request.getParameter("calificacion")),
+                                               request.getParameter("comentarios"));
+		String username = auth.getName();
+		Juez juez = juezServicio.findByUsername(username);
+        String disciplina = juez.getDisciplina();
+        model.addAttribute("competidores", competidorServicio.getCompetidoresByDisciplina(disciplina));
+        return "juez/competidores";
+    }
+
 
     @GetMapping("/resultado_busqueda_juez")
     public String getJuez(HttpServletRequest request, Model model) {

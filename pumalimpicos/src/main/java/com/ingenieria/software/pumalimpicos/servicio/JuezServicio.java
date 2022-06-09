@@ -36,6 +36,10 @@ public class JuezServicio {
         .orElseThrow(() -> new IllegalStateException("no existe juez con el Id suministrado."));
     }
 
+	public Juez findByUsername(String username) {
+		return juezRepositorio.findByUsername(username);
+	}
+
     public List<Juez> getJuezByNombreYApellidos(String nombre, String apellidoPaterno, String apellidoMaterno) {
         return juezRepositorio.findJuezByNombreYApellidos(nombre, apellidoPaterno, apellidoMaterno);
     }

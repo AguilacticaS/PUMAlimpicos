@@ -61,4 +61,16 @@ public class Competidor extends Usuario{
         this.calificacion = 0L;
         this.entrenadorID = 0L;
 	}
+
+    public Competidor(String nombre, String apellidoP,
+    String apellidoM, String email,
+    String username, String rol,
+    String password, String disciplina,
+    Long calificacion, String comentarios) {
+		super(nombre, apellidoP,
+        apellidoM, email, username, rol, password);
+		this.disciplina = disciplina;
+        this.comentarios = comentarios;
+        this.calificacion = calificacion;
+	}
 }
