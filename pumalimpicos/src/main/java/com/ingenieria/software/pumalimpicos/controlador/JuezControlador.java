@@ -65,6 +65,39 @@ public class JuezControlador {
         return "juez/buscar";
     }
 
+    @GetMapping("/calificar")
+    public String calificarCompetidor(Model model){
+        model.addAttribute("competidores", competidorServicio.getCompetidores());
+        //return "disciplina/actualizar";
+        return "competidores/calificar";
+    }
+
+   
+    @GetMapping("/calificar/{id}")
+    public String calificarCompetidor(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("competidores", competidorServicio.getCompetidores(id));
+        return "competidores/calificar";
+    }
+
+    @PostMapping("/calificar")
+    public String califica(HttpServletRequest request, Model model) {
+        competidorServicio.calificarCompetidor(request.getParameter("nombre")), 
+                                               Long.parseLong(request.getParameter("calificación")),
+                                               request.getParameter("commentarios"));
+        model.addAttribute("competidores",  competidorServicio.getCompetidores());
+        return "competidores/calificar";
+    }
+
+    /*@PostMapping("/calificar")
+    public String califica(HttpServletRequest request, Model model) {
+        competidorServicio.calificarCompetidor(Long.parseLong(request.getParameter("id")), 
+                                               request.getParameter("nombre"),
+                                               request.getParameter("calificacion"));
+        model.addAttribute("competidores",  competidorServicio.getCompetidores());
+        return "menujuez/competidores/calificar";
+    }*/
+
+
     @GetMapping("/resultado_busqueda_juez")
     public String getJuez(HttpServletRequest request, Model model){ //, @ModelAttribute("disciplina") Disciplina disciplina) {
         //model.addAttribute("disciplinas", Disciplina.values());
