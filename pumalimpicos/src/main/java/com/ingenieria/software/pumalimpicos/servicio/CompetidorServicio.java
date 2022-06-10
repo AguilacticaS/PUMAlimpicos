@@ -43,6 +43,10 @@ public class CompetidorServicio {
         return competidorRepositorio.findAll();
     }
 
+	public Competidor findByUsername(String username) {
+		return competidorRepositorio.findByUsername(username);
+	}
+
     /**
      * Método que obtiene la lista de competidores del repositorio
      * ordenados de forma descendente de acuerdo a su calificación.

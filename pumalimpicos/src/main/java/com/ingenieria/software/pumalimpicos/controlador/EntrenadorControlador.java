@@ -49,8 +49,20 @@ public class EntrenadorControlador {
 
 
     @GetMapping("/calificacion")
-    public String calificacionCompetidor(){
+    public String calificacionCompetidor(Authentication auth, Model model){
+		String username = auth.getName();
+		Competidor competidor = competidorServicio.findByUsername(username);
+		model.addAttribute("competidor", competidor);
         return "competidor/calificacion";
+    }
+
+    @GetMapping("/competencia")
+    public String verCompetidores(Model model, Authentication auth) {
+		String username = auth.getName();
+		Competidor competidor = competidorServicio.findByUsername(username);
+        String disciplina = competidor.getDisciplina();
+        model.addAttribute("competidores", competidorServicio.getCompetidoresByDisciplina(disciplina));
+        return "competidor/competencia";
     }
 
     /**

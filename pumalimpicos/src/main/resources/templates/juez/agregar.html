@@ -50,8 +50,8 @@
                             <div class="alert alert-warning" th:if="${#fields.hasErrors('username')}"
                                 th:errors="*{username}"></div>
                         </div>
-                        <label for="rol">Rol</label>
                         <div class="form-row">
+                            <label for="rol">Rol</label>
                             <select id="rol" name="rol" class="input-text" th:field="*{rol}">
                                 <option value="Juez" selected>Juez</option>
                             </select>

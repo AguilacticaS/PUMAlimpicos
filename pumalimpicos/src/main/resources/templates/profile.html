@@ -20,7 +20,7 @@
       <a class="a-style" th:if="${session.usuario.rol == 'Entrenador'}" th:href="@{/pos/posiciones/__${session.usuario.id}__}">Ver Mis Competidores</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Juez'}" th:href="@{/menujuez/competidores}">Ver Competidores</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Competidor'}" th:href="@{/competidores/calificacion}">Ver Calificación</a>
-      <a class="a-style" th:if="${session.usuario.rol == 'Competidor'}" th:href="@{/pos/posiciones}">Tabla de Posiciones</a>
+      <a class="a-style" th:if="${session.usuario.rol == 'Competidor'}" th:href="@{/competidores/competencia}">Tabla de Posiciones</a>
       <a class="a-style" th:if="${session.usuario.rol == 'Administrador'}" th:href="@{/menuadmin/}"> Menu Principal</a>
     </h1>
     <div class="form-v5">

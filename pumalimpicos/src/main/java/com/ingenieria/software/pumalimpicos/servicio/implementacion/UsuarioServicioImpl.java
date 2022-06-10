@@ -6,6 +6,7 @@ import com.ingenieria.software.pumalimpicos.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio{
@@ -19,6 +20,11 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 	public Usuario findByUsername(String username) {
 		return usuarioRepositorio.findByUsername(username);
 	}
+
+	@Override
+    public  List<Usuario> getUsuarios() {
+        return usuarioRepositorio.findAll();
+    }
 
 	@Override
 	public Usuario registrar(Usuario u) {
