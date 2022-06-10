@@ -12,7 +12,12 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 
-
+/**
+ * Clase Competidor, modela la información
+ * de competidor en la base de datos.
+ * @author Arturo Yitzack Reynoso Sánchez
+ * @version 1.0
+ **/
 @AllArgsConstructor
 @ToString
 @Getter
