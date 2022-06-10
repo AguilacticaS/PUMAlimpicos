@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Clase JuezControlador, que controla la
+ * comunicación entre la vista y el modelo.
+ * @author Arturo Yitzack Reynoso Sánchez
+ * @version 1.0
+ **/
 @Controller
 @RequestMapping(path = "/menujuez")
 public class JuezControlador {
@@ -25,6 +31,11 @@ public class JuezControlador {
     private final JuezServicio juezServicio;
     private final DisciplinaServicio disciplinaServicio;
 
+    /**
+     * Constructor de JuezControlador.
+     * @param juezServicio La clase servicio de la clase Juez.
+     * @param disciplinaServicio La clase servicio de la clase Disciplina.
+     **/
     @Autowired
     JuezControlador(JuezServicio juezServicio,
             DisciplinaServicio disciplinaServicio) {
@@ -34,9 +45,6 @@ public class JuezControlador {
 
     @GetMapping("/competidores")
     public String verCompetidores() {
-        // model.addAttribute("juez", new Juez());
-        // List<Disciplina> enums = Arrays.asList(Disciplina.values());
-        // model.addAttribute("disciplinas", enums);
         return "juez/competidores";
     }
 

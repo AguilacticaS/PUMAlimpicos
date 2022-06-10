@@ -70,8 +70,8 @@ public class CompetidorServicio {
      * @throws IllegalStateException Si el competidor no se encuentra
      *         registrado en el sistema
      **/
-    public List<Competidor> getMisCompetidores(Long entreandorId){
-        return competidorRepositorio.findByEntrenadorID(entreandorId);
+    public List<Competidor> getMisCompetidores(Long entrenadorId){
+        return competidorRepositorio.findByEntrenadorID(entrenadorId);
     }
 
     /**
